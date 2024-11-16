@@ -1,0 +1,17 @@
+// 使用proto文件构建数据结构的目的是在分布式系统下传递
+syntax = "proto3";
+
+package types;
+
+message Keyword {
+    string Field = 1;  // keyword来自于标题还是正文
+    string Word = 2;
+}
+
+message Document {
+    string Id = 1;                  // 业务使用的唯一Id，索引上此Id不会重复
+    uint64 IntId = 2;               // 倒排索引内部使用的文档id（业务侧无需管这个）
+    uint64 BitsFeature = 3;         // 每个bit都表示某种特征的取值，离散属性
+    repeated Keyword Keywords = 4;  // 倒排索引的key，repeated代表切片
+    bytes Bytes = 5;                // 业务实体序列化之后的结果
+}

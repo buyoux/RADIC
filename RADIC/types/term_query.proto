@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package types;
+
+import "RADIC/types/doc.proto";
+
+message TermQuery {
+    Keyword Keyword = 1;
+    repeated TermQuery Must = 2;
+    repeated TermQuery Should = 3;
+}
+
+// protoc -I=S:/VsCode_Repo/GoLandCode/radic/types 
+//         --gogofaster_out=./types 
+//         --proto_path=./types term_query.proto
